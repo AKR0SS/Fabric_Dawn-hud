@@ -1,0 +1,5 @@
+{
+  "dawn.menu.title": "Dawn gui Configuration",
+  "dawn.config.enable_fps": "FPS Module",
+  "dawn.config.enable_coords": "Coordinates Module"
+}

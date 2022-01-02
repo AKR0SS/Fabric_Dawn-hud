@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "dawn",
+  "version": "${version}",
+  "name": "Dawn GUI Mod",
+  "description": "Provides a customizable GUI system to Minecraft.",
+  "icon": "assets/icon.png",
+  "authors": [
+    "Akross"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/AKR0SS/Fabric_dawn-gui"
+  },
+  "license": "",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "net.fabricmc.dawnhud.DawnClient"
+    ],
+    "modmenu": [
+      "net.fabricmc.dawnhud.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "dawnHUD.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "minecraft": "1.18.x"
+  },
+  "suggests": {
+    "modmenu": ">=3.0.0"
+  }
+}
