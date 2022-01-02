@@ -1,5 +1,9 @@
 {
-  "dawn.menu.title": "Dawn gui Configuration",
-  "dawn.config.enable_fps": "FPS Module",
-  "dawn.config.enable_coords": "Coordinates Module"
+  "dawnhud.menu.title": "Dawn gui Configuration",
+  "dawnhud.config.enable_fps": "FPS Module",
+  "dawnhud.config.enable_coords": "Coordinates Module",
+  "key.dawnhud.category": "Dawn Hud",
+  "key.dawnhud.open.settings": "Open Configuration Panel",
+  "key.dawnhud.display.fps": "Toggle FPS Display",
+  "key.dawnhud.display.coords": "Toggle Coordinates Display"
 }
