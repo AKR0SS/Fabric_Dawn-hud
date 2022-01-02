@@ -5,7 +5,12 @@ import blue.endless.jankson.api.SyntaxError;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.dawnhud.Screens.CottonScreenHandler;
+import net.fabricmc.dawnhud.config.KeyBindingProvider;
+import net.fabricmc.dawnhud.gui.ConfigGUI;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.client.MinecraftClient;
 import org.apache.logging.log4j.LogManager;
 
 import net.fabricmc.dawnhud.config.ConfigSettings;
@@ -23,6 +28,8 @@ public class DawnClient implements ClientModInitializer {
 	public ConfigSettings config;
 	private File configFile;
 
+	KeyBindingProvider keyBindingProvider = new KeyBindingProvider();
+
 	public static DawnClient getInstance() {
 		return instance;
 	}
@@ -30,6 +37,10 @@ public class DawnClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		LogManager.getLogger().info("Successful Initialization of Client");
+
+		ClientTickEvents.END_CLIENT_TICK.register(client -> {
+			keyBindings();
+		});
 
 		instance = this;
 		jankson = new Jankson.Builder().build();
@@ -39,7 +50,6 @@ public class DawnClient implements ClientModInitializer {
 			try {
 				config = jankson.fromJson(jankson.load(configFile), ConfigSettings.class);
 			} catch (IOException | SyntaxError e) {
-				LogManager.getLogger().info("Failed to load config so using default config");
 				config = generateDefaultConfig();
 			}
 		} else {
@@ -50,22 +60,25 @@ public class DawnClient implements ClientModInitializer {
 
 	public void saveConfig() {
 		try {
-			LogManager.getLogger().info("Attempting to save config");
 			FileWriter f = new FileWriter(configFile);
 			f.write(jankson.toJson(config).toJson(true, true));
 			f.close();
-			LogManager.getLogger().info("Successfully saved to config");
 		} catch (IOException e) {
-			LogManager.getLogger().info("Failed to save config");
 			e.printStackTrace();
 		}
 	}
 
 	private ConfigSettings generateDefaultConfig() {
-		LogManager.getLogger().info("Successfully loaded default config");
 		ConfigSettings config = new ConfigSettings();
 		config.EnableFPS = true;
 		config.EnableCoords = true;
 		return config;
 	}
+
+	private void keyBindings() {
+		while (keyBindingProvider.getScreenKeyBinding().wasPressed()) {
+			MinecraftClient.getInstance().setScreen(new CottonScreenHandler(new ConfigGUI()));
+		}
+	}
 }
+
