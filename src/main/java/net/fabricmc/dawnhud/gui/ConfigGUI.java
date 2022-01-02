@@ -21,8 +21,8 @@ public class ConfigGUI extends LightweightGuiDescription  {
         root.setBackgroundPainter(BackgroundPainter.VANILLA);
         root.setHost(this);
 
-        WToggleButton fpsToggleButton = new WToggleButton(new TranslatableText("dawn.config.enable_fps"));
-        WToggleButton coordsToggleButton = new WToggleButton(new TranslatableText("dawn.config.enable_coords"));
+        WToggleButton fpsToggleButton = new WToggleButton(new TranslatableText("dawnhud.config.enable_fps"));
+        WToggleButton coordsToggleButton = new WToggleButton(new TranslatableText("dawnhud.config.enable_coords"));
 
         if (DawnClient.getInstance().config.EnableFPS)
             fpsToggleButton.setToggle(true);
