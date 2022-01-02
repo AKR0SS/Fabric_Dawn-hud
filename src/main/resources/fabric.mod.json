@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "dawn",
+  "id": "dawnhud",
   "version": "${version}",
-  "name": "Dawn GUI Mod",
-  "description": "Provides a customizable GUI system to Minecraft.",
+  "name": "Dawn HUD Mod",
+  "description": "Provides a customizable HUD system to Minecraft.",
   "icon": "assets/icon.png",
   "authors": [
     "Akross"
@@ -12,7 +12,7 @@
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/AKR0SS/Fabric_dawn-gui"
   },
-  "license": "",
+  "license": "MIT",
   "environment": "client",
   "entrypoints": {
     "client": [
