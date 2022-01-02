@@ -5,7 +5,6 @@
 ![Mod Loader](https://img.shields.io/badge/modloader-Fabric-1976d2?style=flat-square&logo=data:image/png)
 ![Mod Version](https://img.shields.io/github/v/release/akr0ss/Fabric_Dawn-hud?style=flat-square)
 
-
 ## Dependencies
 * Fabric API
   ### Suggested Mod
