@@ -5,6 +5,24 @@
 ![Mod Loader](https://img.shields.io/badge/modloader-Fabric-1976d2?style=flat-square&logo=data:image/png)
 ![Release](https://img.shields.io/github/v/release/akr0ss/Fabric_Dawn-hud?style=flat-square)
 
+**This is an etirely client side mod**
+
+Please see the release section for the most up-to-date version of this mod
+
+## Features
+* Current Position Coordinates
+* Current FPS Value
+
+## Plan to add Features
+* Current Biome
+* Current World Time
+* Equipped Armor
+* Equipped Weapon
+  ### Advanced Features
+  * Custom module Colors 
+  * Custom module Positions
+  * Custom FPS value threshold
+
 ## Dependencies
 * Fabric API
   ### Suggested Mod
