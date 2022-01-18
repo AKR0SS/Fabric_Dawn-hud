@@ -38,9 +38,7 @@ public class DawnClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		LogManager.getLogger().info("Successful Initialization of Client");
 
-		ClientTickEvents.END_CLIENT_TICK.register(client -> {
-			keyBindings();
-		});
+		ClientTickEvents.END_CLIENT_TICK.register(client -> keyBindings());
 
 		instance = this;
 		jankson = new Jankson.Builder().build();
