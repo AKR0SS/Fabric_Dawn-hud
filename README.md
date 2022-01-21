@@ -13,9 +13,8 @@ Please see the release section for the most up-to-date version of this mod
 * Current Position Coordinates
 * Current FPS Value
 * Current World Time
-  ###Advanced Features
+  ### Advanced Features
   * Toggle between 12 and 24-hour world clock
-
 
 ## Plan to add Features
 * Current Biome
