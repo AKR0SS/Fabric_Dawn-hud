@@ -1,6 +1,7 @@
 package net.fabricmc.dawnhud.config;
 
 import com.google.gson.annotations.SerializedName;
+import net.minecraft.text.Text;
 
 public class ConfigSettings {
     @SerializedName("enable_fps")
@@ -9,11 +10,10 @@ public class ConfigSettings {
     @SerializedName("enable_coords")
     public Boolean EnableCoords;
 
-    @SerializedName("fps_position")
-    public int xFpsPos;
-    public int yFpsPos;
+    @SerializedName("enable_time")
+    public boolean EnableTime;
 
-    @SerializedName("coords_position")
-    public int xCoordsPos;
-    public int yCoordsPos;
+    @SerializedName("enable_hour_format")
+    public boolean Enable12Hours;
+    public boolean Enable24Hours;
 }
