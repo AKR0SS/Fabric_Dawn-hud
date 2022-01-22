@@ -11,26 +11,30 @@ import net.fabricmc.dawnhud.DawnClient;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
-import javax.swing.*;
-
 @Environment(EnvType.CLIENT)
 public class ConfigGUI extends LightweightGuiDescription  {
+    /**
+     * notes:
+     * MinecraftClient.getInstance().setScreen(null) - Closes an opened window
+     *
+     */
+
     /* Root Panel */
     Text basicTabText = new TranslatableText("gui.dawnhud.basic_options");
     Text advancedTabText = new TranslatableText("gui.dawnhud.advanced_options");
 
     /* Panel A */
+    static final Text clientPlayerHeader = new TranslatableText("gui.dawnhud.config.basic.category.client_player");
+    static final Text placeHolderHeader = new TranslatableText("gui.dawnhud.config.place_holder");
+
     static final Text fpsToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_fps");
     static final Text coordsToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_coords");
     static final Text worldTimeToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_time");
 
     /* Panel B */
-    static Text positionHeaderText = new TranslatableText("gui.dawn.config.category.position");
-    static Text colorHeaderText = new TranslatableText("gui.dawn.config.category.color");
-    static final Text timeHeaderText = new TranslatableText("gui.dawn.config.category.time");
-
-    // static final Text hours12Text = new TranslatableText("dawnhud.config.advanced.12hour");
-    // static final Text hours24Text = new TranslatableText("dawnhud.config.advanced.24hour");
+    static Text positionHeader = new TranslatableText("gui.dawnhud.config.category.advanced.position");
+    static Text colorHeader = new TranslatableText("gui.dawnhud.config.category.advanced.color");
+    static final Text timeHeader = new TranslatableText("gui.dawnhud.config.category.advanced.time");
 
     public ConfigGUI() {
         WPlainPanel root = new WPlainPanel();
@@ -61,9 +65,14 @@ public class ConfigGUI extends LightweightGuiDescription  {
         panelA.setInsets(Insets.ROOT_PANEL);
 
         /* Module Definition */
-        WToggleButton fpsToggleButton = new WToggleButton(fpsToggleButtonText);
-        WToggleButton coordsToggleButton = new WToggleButton(coordsToggleButtonText);
-        WToggleButton worldTimeToggleButton = new WToggleButton(worldTimeToggleButtonText);
+            /* headers */
+            WText clientPlayerHeaderText = new WText(clientPlayerHeader);
+            WText placeHolderHeaderText = new WText(placeHolderHeader);
+
+            /* toggle buttons */
+            WToggleButton fpsToggleButton = new WToggleButton(fpsToggleButtonText);
+            WToggleButton coordsToggleButton = new WToggleButton(coordsToggleButtonText);
+            WToggleButton worldTimeToggleButton = new WToggleButton(worldTimeToggleButtonText);
 
         /* Modules */
         setFpsToggleButton(fpsToggleButton);
@@ -71,9 +80,16 @@ public class ConfigGUI extends LightweightGuiDescription  {
         setWorldTimeToggleButton(worldTimeToggleButton);
 
         /* Adding them to panel render */
-        panelA.add(fpsToggleButton, 6, 6, panelA.getWidth() - 16, 20);
-        panelA.add(coordsToggleButton, 6, 24, panelA.getWidth() - 16, 20);
-        panelA.add(worldTimeToggleButton, 6, 42, panelA.getWidth() - 16, 20);
+            /* Panel Add */
+            panelA.add(clientPlayerHeaderText, panelA.getWidth() / 4, 6, panelA.getWidth() / 2, 20);
+            panelA.add(fpsToggleButton, 6, 16, panelA.getWidth() - 12, 20);
+            panelA.add(coordsToggleButton, 6, 34, panelA.getWidth() - 12, 20);
+            panelA.add(worldTimeToggleButton, 6, 52, panelA.getWidth() - 12, 20);
+            panelA.add(placeHolderHeaderText, panelA.getWidth() / 4, 70, panelA.getWidth() / 2, 20);
+
+            /* Alignment */
+            clientPlayerHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
+            placeHolderHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
     }
 
     private static void setPanelB(WTabPanel tabs, WPlainPanel panelB) {
@@ -82,34 +98,38 @@ public class ConfigGUI extends LightweightGuiDescription  {
         panelB.setInsets(Insets.ROOT_PANEL);
 
         /* Module Definition */
-        WText positionHeader = new WText(positionHeaderText);
-        WText colorHeader = new WText(colorHeaderText);
-        WText timeHeader = new WText(timeHeaderText);
+            /* headers */
+            WText positionHeaderText = new WText(positionHeader);
+            WText colorHeaderText = new WText(colorHeader);
+            WText timeHeaderText = new WText(timeHeader);
 
-        WButton editPosition = new WButton(new TranslatableText("dawnhud.config.advanced.edit_position"));
-        WButton editColors = new WButton(new TranslatableText("dawnhud.config.advanced.edit_colors"));
-        WButton hours12 = new WButton(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
-        WButton hours24 = new WButton(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
+            /* buttons */
+            WButton editPosition = new WButton(new TranslatableText("dawnhud.config.advanced.edit_position"));
+            WButton editColors = new WButton(new TranslatableText("dawnhud.config.advanced.edit_colors"));
+            WButton hours12 = new WButton(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
+            WButton hours24 = new WButton(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
 
         /* Modules */
         setClockPeriod(hours12, hours24);
 
         /* Adding Modules to Panel Render */
-        panelB.add(positionHeader, panelB.getWidth() / 4, 6, panelB.getWidth() / 2, 20);
-        panelB.add(colorHeader, panelB.getWidth() / 4, 46, panelB.getWidth() / 2, 20);
-        panelB.add(timeHeader, panelB.getWidth() / 4, 86, panelB.getWidth() / 2, 20);
+            /* Panel Add */
+            panelB.add(positionHeaderText, panelB.getWidth() / 4, 6, panelB.getWidth() / 2, 20);
+            panelB.add(colorHeaderText, panelB.getWidth() / 4, 46, panelB.getWidth() / 2, 20);
+            panelB.add(timeHeaderText, panelB.getWidth() / 4, 86, panelB.getWidth() / 2, 20);
 
-        panelB.add(editPosition, panelB.getWidth() / 4, 20, panelB.getWidth() / 2, 20);
-        panelB.add(editColors, panelB.getWidth() / 4, 60, panelB.getWidth() / 2, 20);
-        panelB.add(hours12, 6, 100, panelB.getWidth() / 2 - 6, 20);
-        panelB.add(hours24, panelB.getWidth() / 2 + 6, 100, panelB.getWidth() / 2 - 12, 20);
+            panelB.add(editPosition, panelB.getWidth() / 4, 20, panelB.getWidth() / 2, 20);
+            panelB.add(editColors, panelB.getWidth() / 4, 60, panelB.getWidth() / 2, 20);
+            panelB.add(hours12, 6, 100, panelB.getWidth() / 2 - 6, 20);
+            panelB.add(hours24, panelB.getWidth() / 2 + 6, 100, panelB.getWidth() / 2 - 12, 20);
 
-        editPosition.setAlignment(HorizontalAlignment.CENTER);
-        editColors.setAlignment(HorizontalAlignment.CENTER);
+            /* Alignment */
+            editPosition.setAlignment(HorizontalAlignment.CENTER);
+            editColors.setAlignment(HorizontalAlignment.CENTER);
 
-        positionHeader.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        colorHeader.setHorizontalAlignment(HorizontalAlignment.CENTER);
-        timeHeader.setHorizontalAlignment(HorizontalAlignment.CENTER);
+            positionHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
+            colorHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
+            timeHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
     }
 
     private static void displayClockPeriod(WButton hours12, WButton hours24) {
