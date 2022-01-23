@@ -9,6 +9,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.dawnhud.DawnClient;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
@@ -75,18 +76,20 @@ public class ConfigGUI extends LightweightGuiDescription  {
             WToggleButton coordsToggleButton = new WToggleButton(coordsToggleButtonText);
             WToggleButton worldTimeToggleButton = new WToggleButton(worldTimeToggleButtonText);
 
-        /* Save Modules */
+        /* Modules */
         setFpsToggleButton(fpsToggleButton);
         setCoordsToggleButton(coordsToggleButton);
         setWorldTimeToggleButton(worldTimeToggleButton);
 
         /* Adding them to panel render */
             /* Panel Add */
-            panelA.add(clientPlayerHeaderText, panelA.getWidth() / 4, 6, panelA.getWidth() / 2, 20);
+            panelA.add(clientPlayerHeaderText, panelA.getWidth() / 4 + 6, 6, panelA.getWidth() / 2, 20);
+            panelA.add(placeHolderHeaderText, panelA.getWidth() / 4 + 6, 70, panelA.getWidth() / 2, 20);
+
             panelA.add(fpsToggleButton, 6, 16, panelA.getWidth() - 12, 20);
             panelA.add(coordsToggleButton, 6, 34, panelA.getWidth() - 12, 20);
             panelA.add(worldTimeToggleButton, 6, 52, panelA.getWidth() - 12, 20);
-            panelA.add(placeHolderHeaderText, panelA.getWidth() / 4 - 6, 70, panelA.getWidth() / 2, 20);
+
 
             /* Alignment */
             clientPlayerHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -111,10 +114,8 @@ public class ConfigGUI extends LightweightGuiDescription  {
             WButton hours24 = new WButton(new TranslatableText("dawnhud.config.advanced.24hour"));
 
         /* Modules */
-        createPositionScreen(editPosition);
-
-        /* Save Modules */
         setClockPeriod(hours12, hours24);
+        createPositionScreen(editPosition);
 
         /* Adding Modules to Panel Render */
             /* Panel Add */
@@ -136,13 +137,6 @@ public class ConfigGUI extends LightweightGuiDescription  {
             timeHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
     }
 
-    private static void createPositionScreen(WButton editPosition) {
-        editPosition.setOnClick(() -> {
-            MinecraftClient.getInstance().setScreen(null);
-            MinecraftClient.getInstance().setScreen(new PositionEditor(new LiteralText("Editing Module Position")));
-        });
-    }
-
     private static void displayClockPeriod(WButton hours12, WButton hours24) {
         if (DawnClient.getInstance().config.Enable12Hours) {
             hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
@@ -152,6 +146,12 @@ public class ConfigGUI extends LightweightGuiDescription  {
             hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
             hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
         }
+    }
+    private static void createPositionScreen(WButton editPosition) {
+        editPosition.setOnClick(() -> {
+            MinecraftClient.getInstance().setScreen(null);
+            MinecraftClient.getInstance().setScreen(new Screen(new LiteralText("Editing Module Position")) {});
+        });
     }
 
     /* saves to config */
@@ -197,6 +197,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
         });
     }
     private static void setClockPeriod(WButton hours12, WButton hours24) {
+        /* Reads and sets INITIAL value */
         if (DawnClient.getInstance().config.Enable12Hours) {
             hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
             hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
@@ -208,6 +209,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
 
         hours12.setOnClick(() -> {
             if (DawnClient.getInstance().config.Enable12Hours) {
+                /* -s displayClockPeriod(WButton, WButton):void Reads and sets a CHANGED value */
                 displayClockPeriod(hours12, hours24);
                 DawnClient.getInstance().config.Enable24Hours = true;
                 DawnClient.getInstance().config.Enable12Hours = false;
@@ -236,7 +238,6 @@ public class ConfigGUI extends LightweightGuiDescription  {
             DawnClient.getInstance().saveConfig();
         });
     }
-
 
     /**
     * Allows the Overriding of the GuiDescription.addPainters method which adds a default background to any null backgroundPainter calls.
