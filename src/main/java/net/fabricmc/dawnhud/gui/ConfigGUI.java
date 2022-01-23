@@ -8,6 +8,7 @@ import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.dawnhud.DawnClient;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
@@ -74,7 +75,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
             WToggleButton coordsToggleButton = new WToggleButton(coordsToggleButtonText);
             WToggleButton worldTimeToggleButton = new WToggleButton(worldTimeToggleButtonText);
 
-        /* Modules */
+        /* Save Modules */
         setFpsToggleButton(fpsToggleButton);
         setCoordsToggleButton(coordsToggleButton);
         setWorldTimeToggleButton(worldTimeToggleButton);
@@ -85,7 +86,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
             panelA.add(fpsToggleButton, 6, 16, panelA.getWidth() - 12, 20);
             panelA.add(coordsToggleButton, 6, 34, panelA.getWidth() - 12, 20);
             panelA.add(worldTimeToggleButton, 6, 52, panelA.getWidth() - 12, 20);
-            panelA.add(placeHolderHeaderText, panelA.getWidth() / 4, 70, panelA.getWidth() / 2, 20);
+            panelA.add(placeHolderHeaderText, panelA.getWidth() / 4 - 6, 70, panelA.getWidth() / 2, 20);
 
             /* Alignment */
             clientPlayerHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -106,10 +107,13 @@ public class ConfigGUI extends LightweightGuiDescription  {
             /* buttons */
             WButton editPosition = new WButton(new TranslatableText("dawnhud.config.advanced.edit_position"));
             WButton editColors = new WButton(new TranslatableText("dawnhud.config.advanced.edit_colors"));
-            WButton hours12 = new WButton(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
-            WButton hours24 = new WButton(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
+            WButton hours12 = new WButton(new TranslatableText("dawnhud.config.advanced.12hour"));
+            WButton hours24 = new WButton(new TranslatableText("dawnhud.config.advanced.24hour"));
 
         /* Modules */
+        createPositionScreen(editPosition);
+
+        /* Save Modules */
         setClockPeriod(hours12, hours24);
 
         /* Adding Modules to Panel Render */
@@ -130,6 +134,13 @@ public class ConfigGUI extends LightweightGuiDescription  {
             positionHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
             colorHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
             timeHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
+    }
+
+    private static void createPositionScreen(WButton editPosition) {
+        editPosition.setOnClick(() -> {
+            MinecraftClient.getInstance().setScreen(null);
+            MinecraftClient.getInstance().setScreen(new PositionEditor(new LiteralText("Editing Module Position")));
+        });
     }
 
     private static void displayClockPeriod(WButton hours12, WButton hours24) {
@@ -186,6 +197,15 @@ public class ConfigGUI extends LightweightGuiDescription  {
         });
     }
     private static void setClockPeriod(WButton hours12, WButton hours24) {
+        if (DawnClient.getInstance().config.Enable12Hours) {
+            hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
+            hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
+        }
+        else {
+            hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
+            hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
+        }
+
         hours12.setOnClick(() -> {
             if (DawnClient.getInstance().config.Enable12Hours) {
                 displayClockPeriod(hours12, hours24);
