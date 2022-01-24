@@ -7,7 +7,7 @@
 
 **This is an etirely client side mod**
 
-Please see the release section for the most up-to-date version of this mod
+Please see the [release section](https://github.com/AKR0SS/Fabric_dawn-hud/releases) for the most up-to-date version of this mod
 
 ## Features
 * Current Position Coordinates
