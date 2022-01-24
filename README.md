@@ -5,7 +5,7 @@
 ![Mod Loader](https://img.shields.io/badge/modloader-Fabric-1976d2?style=flat-square&logo=data:image/png)
 ![Release](https://img.shields.io/github/v/release/akr0ss/Fabric_Dawn-hud?style=flat-square)
 
-**This is an etirely client side mod**
+**This is an entirely client side mod**
 
 Please see the [release section](https://github.com/AKR0SS/Fabric_dawn-hud/releases) for the most up-to-date version of this mod
 
