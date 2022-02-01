@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "dawnhud",
+  "id": "dawn",
   "version": "${version}",
   "name": "Dawn HUD Mod",
   "description": "Provides a customizable HUD system to Minecraft.",
