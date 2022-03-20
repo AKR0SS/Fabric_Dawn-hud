@@ -12,6 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(InGameHud.class)
 public class DisplayRenderMixin {
+	int currentX;
+	int currentY;
+	int currentZ;
+
 	@Inject(at = @At("TAIL"), method = "render")
 	private void render(MatrixStack matrixStack, float tickDelta, CallbackInfo info) {
 		MinecraftClient client = MinecraftClient.getInstance();
@@ -32,10 +36,6 @@ public class DisplayRenderMixin {
 	private void renderFPS(MinecraftClient client) { DisplayHud.displayFPS(getFPS(client)); }
 	private void renderTime(MinecraftClient client) { DisplayHud.displayTime((client.player.world.getTimeOfDay() + 6000)); }
 	private void renderCoords(MinecraftClient client) {
-		int currentX;
-		int currentY;
-		int currentZ;
-
 		currentX = getX(client);
 		currentY = getY(client);
 		currentZ = getZ(client);
