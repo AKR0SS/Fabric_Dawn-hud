@@ -1,5 +1,6 @@
 package net.fabricmc.dawnhud.gui;
 
+import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
 import io.github.cottonmc.cotton.gui.client.LightweightGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.*;
 import io.github.cottonmc.cotton.gui.widget.data.HorizontalAlignment;
@@ -9,18 +10,11 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.dawnhud.DawnClient;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.*;
 import net.minecraft.util.Formatting;
 
 @Environment(EnvType.CLIENT)
 public class ConfigGUI extends LightweightGuiDescription  {
-    /**
-     * notes:
-     * MinecraftClient.getInstance().setScreen(null) - Closes an opened window
-     *
-     */
-
     /* Root Panel */
     Text basicTabText = new TranslatableText("gui.dawnhud.basic_options");
     Text advancedTabText = new TranslatableText("gui.dawnhud.advanced_options");
@@ -115,7 +109,12 @@ public class ConfigGUI extends LightweightGuiDescription  {
 
         /* Modules */
         setClockPeriod(hours12, hours24);
-        createPositionScreen(editPosition);
+        //createPositionScreen(editPosition);
+
+        editColors.setOnClick(() -> {
+            MinecraftClient.getInstance().setScreen(null);
+            MinecraftClient.getInstance().setScreen(new CottonClientScreen(new ColorEditor()));
+        });
 
         /* Adding Modules to Panel Render */
             /* Panel Add */
@@ -123,10 +122,10 @@ public class ConfigGUI extends LightweightGuiDescription  {
             panelB.add(colorHeaderText, panelB.getWidth() / 4, 46, panelB.getWidth() / 2, 20);
             panelB.add(timeHeaderText, panelB.getWidth() / 4, 86, panelB.getWidth() / 2, 20);
 
-            panelB.add(editPosition, panelB.getWidth() / 4, 20, panelB.getWidth() / 2, 20);
-            panelB.add(editColors, panelB.getWidth() / 4, 60, panelB.getWidth() / 2, 20);
+            panelB.add(editPosition, panelB.getWidth() / 4 + 6, 20, panelB.getWidth() / 2, 20);
+            panelB.add(editColors, panelB.getWidth() / 4 + 6, 60, panelB.getWidth() / 2, 20);
             panelB.add(hours12, 6, 100, panelB.getWidth() / 2 - 6, 20);
-            panelB.add(hours24, panelB.getWidth() / 2 + 6, 100, panelB.getWidth() / 2 - 12, 20);
+            panelB.add(hours24, panelB.getWidth() / 2 + 12, 100, panelB.getWidth() / 2 - 12, 20);
 
             /* Alignment */
             editPosition.setAlignment(HorizontalAlignment.CENTER);
@@ -146,12 +145,6 @@ public class ConfigGUI extends LightweightGuiDescription  {
             hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
             hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
         }
-    }
-    private static void createPositionScreen(WButton editPosition) {
-        editPosition.setOnClick(() -> {
-            MinecraftClient.getInstance().setScreen(null);
-            MinecraftClient.getInstance().setScreen(new Screen(new LiteralText("Editing Module Position")) {});
-        });
     }
 
     /* saves to config */
@@ -197,7 +190,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
         });
     }
     private static void setClockPeriod(WButton hours12, WButton hours24) {
-        /* Reads and sets INITIAL value */
+        /* Reads and sets INITIAL value upon opening settings gui */
         if (DawnClient.getInstance().config.Enable12Hours) {
             hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
             hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
