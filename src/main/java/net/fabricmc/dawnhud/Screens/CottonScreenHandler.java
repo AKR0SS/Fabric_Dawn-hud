@@ -1,4 +1,4 @@
-package net.fabricmc.dawnhud.Screens;
+package net.fabricmc.dawnhud.screens;
 
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
@@ -17,11 +17,5 @@ public class CottonScreenHandler extends CottonClientScreen {
 
     public CottonScreenHandler(GuiDescription description) {
         super(description);
-    }
-
-    @Override
-    public void onClose() {
-        if (this.client != null)
-            this.client.setScreen(parent);
     }
 }

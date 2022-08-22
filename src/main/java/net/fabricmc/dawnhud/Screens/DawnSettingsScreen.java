@@ -1,4 +1,4 @@
-package net.fabricmc.dawnhud.Screens;
+package net.fabricmc.dawnhud.screens;
 
 import io.github.cottonmc.cotton.gui.GuiDescription;
 import net.fabricmc.api.EnvType;

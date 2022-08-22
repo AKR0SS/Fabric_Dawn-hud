@@ -5,7 +5,7 @@ import blue.endless.jankson.api.SyntaxError;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.dawnhud.Screens.CottonScreenHandler;
+import net.fabricmc.dawnhud.screens.CottonScreenHandler;
 import net.fabricmc.dawnhud.config.KeyBindingProvider;
 import net.fabricmc.dawnhud.gui.ConfigGUI;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
