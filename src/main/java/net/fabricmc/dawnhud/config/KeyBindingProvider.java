@@ -27,14 +27,15 @@ public class KeyBindingProvider {
             "key.dawnhud.category"
     ));
 
+    // Key Binding to open Config GUI
     public KeyBinding getScreenKeyBinding() {
         return screenKeyBinding;
     }
 
+    /* Module Key Bindings */
     public KeyBinding getDisplayCoordsKeyBinding() {
         return displayCoordsKeyBinding;
     }
-
     public KeyBinding getDisplayFPSKeyBinding() {
         return displayFPSKeyBinding;
     }
