@@ -26,6 +26,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
     static final Text fpsToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_fps");
     static final Text coordsToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_coords");
     static final Text worldTimeToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_time");
+    static final Text clientBiomeToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_biomes");
 
     /* Panel B */
     static Text positionHeader = new TranslatableText("gui.dawnhud.config.category.advanced.position");
@@ -69,21 +70,23 @@ public class ConfigGUI extends LightweightGuiDescription  {
             WToggleButton fpsToggleButton = new WToggleButton(fpsToggleButtonText);
             WToggleButton coordsToggleButton = new WToggleButton(coordsToggleButtonText);
             WToggleButton worldTimeToggleButton = new WToggleButton(worldTimeToggleButtonText);
+            WToggleButton biomeToggleButton = new WToggleButton(clientBiomeToggleButtonText);
 
         /* Modules */
         setFpsToggleButton(fpsToggleButton);
         setCoordsToggleButton(coordsToggleButton);
         setWorldTimeToggleButton(worldTimeToggleButton);
+        setBiomeToggleButton(biomeToggleButton);
 
         /* Adding them to panel render */
             /* Panel Add */
             panelA.add(clientPlayerHeaderText, panelA.getWidth() / 4 + 6, 6, panelA.getWidth() / 2, 20);
-            panelA.add(placeHolderHeaderText, panelA.getWidth() / 4 + 6, 70, panelA.getWidth() / 2, 20);
+            panelA.add(placeHolderHeaderText, panelA.getWidth() / 4 + 6, 88, panelA.getWidth() / 2, 20);
 
             panelA.add(fpsToggleButton, 6, 16, panelA.getWidth() - 12, 20);
             panelA.add(coordsToggleButton, 6, 34, panelA.getWidth() - 12, 20);
             panelA.add(worldTimeToggleButton, 6, 52, panelA.getWidth() - 12, 20);
-
+            panelA.add(biomeToggleButton, 6, 70, panelA.getWidth() - 12, 20);
 
             /* Alignment */
             clientPlayerHeaderText.setHorizontalAlignment(HorizontalAlignment.CENTER);
@@ -152,13 +155,12 @@ public class ConfigGUI extends LightweightGuiDescription  {
         fpsToggleButton.setToggle(DawnClient.getInstance().config.EnableFPS);
 
         fpsToggleButton.setOnToggle(on -> {
-            if (on) {
+            if (on)
                 DawnClient.getInstance().config.EnableFPS = true;
-                DawnClient.getInstance().saveConfig();
-            } else {
+            else
                 DawnClient.getInstance().config.EnableFPS = false;
-                DawnClient.getInstance().saveConfig();
-            }
+
+            DawnClient.getInstance().saveConfig();
         });
     }
     private static void setCoordsToggleButton(WToggleButton coordsToggleButton) {
@@ -179,14 +181,12 @@ public class ConfigGUI extends LightweightGuiDescription  {
         worldTimeToggleButton.setToggle(DawnClient.getInstance().config.EnableTime);
 
         worldTimeToggleButton.setOnToggle(on -> {
-            if (on) {
+            if (on)
                 DawnClient.getInstance().config.EnableTime = true;
-                DawnClient.getInstance().saveConfig();
-            }
-            else {
+            else
                 DawnClient.getInstance().config.EnableTime = false;
-                DawnClient.getInstance().saveConfig();
-            }
+
+            DawnClient.getInstance().saveConfig();
         });
     }
     private static void setClockPeriod(WButton hours12, WButton hours24) {
@@ -227,8 +227,19 @@ public class ConfigGUI extends LightweightGuiDescription  {
                 DawnClient.getInstance().config.Enable12Hours = false;
             }
 
-
             DawnClient.getInstance().saveConfig();
+        });
+    }
+    private static void setBiomeToggleButton(WToggleButton biomeToggleButton) {
+        biomeToggleButton.setToggle(DawnClient.getInstance().config.EnableBiome);
+
+        biomeToggleButton.setOnToggle(on -> {
+           if (on)
+               DawnClient.getInstance().config.EnableBiome = true;
+           else
+               DawnClient.getInstance().config.EnableBiome = false;
+
+           DawnClient.getInstance().saveConfig();
         });
     }
 

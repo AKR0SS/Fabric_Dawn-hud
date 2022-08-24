@@ -4,10 +4,10 @@ import net.fabricmc.dawnhud.DawnClient;
 import net.fabricmc.dawnhud.modules.Coordinates;
 import net.fabricmc.dawnhud.modules.Fps;
 import net.fabricmc.dawnhud.modules.Time;
+import net.fabricmc.dawnhud.modules.mBiome;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.util.math.MatrixStack;
-import org.lwjgl.system.CallbackI;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -29,6 +29,8 @@ public class DisplayRenderMixin {
 				renderCoords(client);
 			if (DawnClient.getInstance().config.EnableTime)
 				renderTime(client);
+			if (DawnClient.getInstance().config.EnableBiome)
+				renderBiome(client);
 		}
 	}
 
@@ -36,4 +38,5 @@ public class DisplayRenderMixin {
 	private void renderFPS(MinecraftClient client) { new Fps().renderFps(client, matrixStack); }
 	private void renderTime(MinecraftClient client) { new Time().renderTime(client, matrixStack); }
 	private void renderCoords(MinecraftClient client) { new Coordinates().renderCoordinates(client, matrixStack); }
+	private void renderBiome(MinecraftClient client) { new mBiome().renderBiome(client, matrixStack); }
 }

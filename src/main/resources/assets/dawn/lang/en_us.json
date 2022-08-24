@@ -12,6 +12,7 @@
   "dawnhud.config.basic.enable_fps": "FPS Module",
   "dawnhud.config.basic.enable_coords": "Coordinates Module",
   "dawnhud.config.basic.enable_time": "Time Module",
+  "dawnhud.config.basic.enable_biomes": "Biome Module",
   "dawnhud.config.advanced.edit_position": "Edit Module Positions",
   "dawnhud.config.advanced.edit_colors": "Edit Module Colors",
   "dawnhud.config.advanced.12hour": "12 hour clock",
