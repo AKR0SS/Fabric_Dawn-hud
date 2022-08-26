@@ -17,7 +17,7 @@ public class mBiome {
         ChunkPos chunkPos = new ChunkPos(pos);
         WorldChunk worldChunk = client.world.getChunk(chunkPos.x, chunkPos.z);
 
-        if (worldChunk.isEmpty() == false) {
+        if (!worldChunk.isEmpty()) {
             Biome biome = client.world.getBiome(pos).value();
             Identifier id = client.world.getRegistryManager().get(Registry.BIOME_KEY).getId(biome);
             playerBiome = id.toString().substring(id.toString().lastIndexOf(":") + 1).replace("_", " ");

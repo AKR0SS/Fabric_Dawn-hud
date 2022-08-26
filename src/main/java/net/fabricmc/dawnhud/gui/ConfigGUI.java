@@ -16,22 +16,22 @@ import net.minecraft.util.Formatting;
 @Environment(EnvType.CLIENT)
 public class ConfigGUI extends LightweightGuiDescription  {
     /* Root Panel */
-    Text basicTabText = new TranslatableText("gui.dawnhud.basic_options");
-    Text advancedTabText = new TranslatableText("gui.dawnhud.advanced_options");
+    Text basicTabText = Text.translatable("gui.dawnhud.basic_options");
+    Text advancedTabText = Text.translatable("gui.dawnhud.advanced_options");
 
     /* Panel A */
-    static final Text clientPlayerHeader = new TranslatableText("gui.dawnhud.config.basic.category.client_player");
-    static final Text placeHolderHeader = new TranslatableText("gui.dawnhud.config.place_holder");
+    static final Text clientPlayerHeader = Text.translatable("gui.dawnhud.config.basic.category.client_player");
+    static final Text placeHolderHeader = Text.translatable("gui.dawnhud.config.place_holder");
 
-    static final Text fpsToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_fps");
-    static final Text coordsToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_coords");
-    static final Text worldTimeToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_time");
-    static final Text clientBiomeToggleButtonText = new TranslatableText("dawnhud.config.basic.enable_biomes");
+    static final Text fpsToggleButtonText = Text.translatable("dawnhud.config.basic.enable_fps");
+    static final Text coordsToggleButtonText = Text.translatable("dawnhud.config.basic.enable_coords");
+    static final Text worldTimeToggleButtonText = Text.translatable("dawnhud.config.basic.enable_time");
+    static final Text clientBiomeToggleButtonText = Text.translatable("dawnhud.config.basic.enable_biomes");
 
     /* Panel B */
-    static Text positionHeader = new TranslatableText("gui.dawnhud.config.category.advanced.position");
-    static Text colorHeader = new TranslatableText("gui.dawnhud.config.category.advanced.color");
-    static final Text timeHeader = new TranslatableText("gui.dawnhud.config.category.advanced.time");
+    static Text positionHeader = Text.translatable("gui.dawnhud.config.category.advanced.position");
+    static Text colorHeader = Text.translatable("gui.dawnhud.config.category.advanced.color");
+    static final Text timeHeader = Text.translatable("gui.dawnhud.config.category.advanced.time");
 
     public ConfigGUI() {
         WPlainPanel root = new WPlainPanel();
@@ -105,10 +105,10 @@ public class ConfigGUI extends LightweightGuiDescription  {
             WText timeHeaderText = new WText(timeHeader);
 
             /* buttons */
-            WButton editPosition = new WButton(new TranslatableText("dawnhud.config.advanced.edit_position"));
-            WButton editColors = new WButton(new TranslatableText("dawnhud.config.advanced.edit_colors"));
-            WButton hours12 = new WButton(new TranslatableText("dawnhud.config.advanced.12hour"));
-            WButton hours24 = new WButton(new TranslatableText("dawnhud.config.advanced.24hour"));
+            WButton editPosition = new WButton(Text.translatable("dawnhud.config.advanced.edit_position"));
+            WButton editColors = new WButton(Text.translatable("dawnhud.config.advanced.edit_colors"));
+            WButton hours12 = new WButton(Text.translatable("dawnhud.config.advanced.12hour"));
+            WButton hours24 = new WButton(Text.translatable("dawnhud.config.advanced.24hour"));
 
         /* Modules */
         setClockPeriod(hours12, hours24);
@@ -116,7 +116,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
 
         editColors.setOnClick(() -> {
             MinecraftClient.getInstance().setScreen(null);
-            MinecraftClient.getInstance().setScreen(new CottonClientScreen(new ColorEditor()));
+            //MinecraftClient.getInstance().setScreen(new CottonClientScreen(new ColorEditor()));
         });
 
         /* Adding Modules to Panel Render */
@@ -141,12 +141,12 @@ public class ConfigGUI extends LightweightGuiDescription  {
 
     private static void displayClockPeriod(WButton hours12, WButton hours24) {
         if (DawnClient.getInstance().config.Enable12Hours) {
-            hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
-            hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
+            hours12.setLabel(Text.translatable("dawnhud.config.advanced.12hour").append(": ").append(Text.translatable("dawnhud.off").formatted(Formatting.RED)));
+            hours24.setLabel(Text.translatable("dawnhud.config.advanced.24hour").append(": ").append(Text.translatable("dawnhud.on").formatted(Formatting.GREEN)));
         }
         else {
-            hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
-            hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
+            hours12.setLabel(Text.translatable("dawnhud.config.advanced.12hour").append(": ").append(Text.translatable("dawnhud.on").formatted(Formatting.GREEN)));
+            hours24.setLabel(Text.translatable("dawnhud.config.advanced.24hour").append(": ").append(Text.translatable("dawnhud.off").formatted(Formatting.RED)));
         }
     }
 
@@ -192,12 +192,12 @@ public class ConfigGUI extends LightweightGuiDescription  {
     private static void setClockPeriod(WButton hours12, WButton hours24) {
         /* Reads and sets INITIAL value upon opening settings gui */
         if (DawnClient.getInstance().config.Enable12Hours) {
-            hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
-            hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
+            hours12.setLabel(Text.translatable("dawnhud.config.advanced.12hour").append(": ").append(Text.translatable("dawnhud.on").formatted(Formatting.GREEN)));
+            hours24.setLabel(Text.translatable("dawnhud.config.advanced.24hour").append(": ").append(Text.translatable("dawnhud.off").formatted(Formatting.RED)));
         }
         else {
-            hours12.setLabel(new TranslatableText("dawnhud.config.advanced.12hour").append(": ").append(new TranslatableText("dawnhud.off").formatted(Formatting.RED)));
-            hours24.setLabel(new TranslatableText("dawnhud.config.advanced.24hour").append(": ").append(new TranslatableText("dawnhud.on").formatted(Formatting.GREEN)));
+            hours12.setLabel(Text.translatable("dawnhud.config.advanced.12hour").append(": ").append(Text.translatable("dawnhud.off").formatted(Formatting.RED)));
+            hours24.setLabel(Text.translatable("dawnhud.config.advanced.24hour").append(": ").append(Text.translatable("dawnhud.on").formatted(Formatting.GREEN)));
         }
 
         hours12.setOnClick(() -> {
