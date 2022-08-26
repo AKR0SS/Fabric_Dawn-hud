@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '0.10-SNAPSHOT'
+	id 'fabric-loom' version '0.13-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -17,7 +17,7 @@ repositories {
 	}
 	maven {
 		name = "CottonMC"
-		url = "https://server.bbkr.space/artifactory/libs-release"
+		url = "https://alexiil.uk/mirrors/server.bbkr.space/maven/"
 	}
 }
 
