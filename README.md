@@ -13,21 +13,25 @@ Please see the [release section](https://github.com/AKR0SS/Fabric_dawn-hud/relea
 * Current Position Coordinates
 * Current FPS Value
 * Current World Time
+* Current Biome
   ### Advanced Features
   * Toggle between 12 and 24-hour world clock
 
 ## Plan to add Features
-* Current Biome
 * Equipped Armor
 * Equipped Weapon
   ### Advanced Features
-  * Custom module Colors 
+  * Custom module Colors
   * Custom module Positions
   * Custom FPS value threshold
+
+## Supported Game versions
+* 1.19.x
+* 1.18.x
 
 ## Dependencies
 * Fabric API
   ### Suggested Mod
-    * Mod Menu ([Curse Forge](https://www.curseforge.com/minecraft/mc-mods/modmenu), [GitHub](https://github.com/TerraformersMC/ModMenu))
+  * Mod Menu ([Curse Forge](https://www.curseforge.com/minecraft/mc-mods/modmenu), [GitHub](https://github.com/TerraformersMC/ModMenu))
 
 <p>Added custom keybinding support as of v1.1.0</p>
