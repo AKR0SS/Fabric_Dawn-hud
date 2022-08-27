@@ -4,6 +4,7 @@
   "dawnhud.menu.title": "Dawn Settings Configuration",
   "gui.dawnhud.basic_options": "Basic",
   "gui.dawnhud.advanced_options": "Advanced",
+  "gui.dawnhud.config.enable_overlay": "HUD Overlay",
   "gui.dawnhud.config.place_holder": "Place Holder Header",
   "gui.dawnhud.config.basic.category.client_player": "Client Player Settings",
   "gui.dawnhud.config.category.advanced.position": "Module Position Settings",

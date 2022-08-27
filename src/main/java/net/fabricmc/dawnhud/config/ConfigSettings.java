@@ -3,6 +3,9 @@ package net.fabricmc.dawnhud.config;
 import com.google.gson.annotations.SerializedName;
 
 public class ConfigSettings {
+    @SerializedName("enable_overlay")
+    public Boolean EnableOverlay;
+
     @SerializedName("enable_fps")
     public Boolean EnableFPS;
 
@@ -10,12 +13,12 @@ public class ConfigSettings {
     public Boolean EnableCoords;
 
     @SerializedName("enable_time")
-    public boolean EnableTime;
+    public Boolean EnableTime;
 
     @SerializedName("enable_hour_format")
-    public boolean Enable12Hours;
-    public boolean Enable24Hours;
+    public Boolean Enable12Hours;
+    public Boolean Enable24Hours;
 
     @SerializedName("enable_biome")
-    public boolean EnableBiome;
+    public Boolean EnableBiome;
 }

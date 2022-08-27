@@ -22,7 +22,7 @@ public class DisplayRenderMixin {
 		MinecraftClient client = MinecraftClient.getInstance();
 		this.matrixStack = matrixStack;
 
-		if (!client.options.debugEnabled) { // Checks if enabled in Config
+		if (!client.options.debugEnabled && DawnClient.getInstance().config.EnableOverlay) {
 			if (DawnClient.getInstance().config.EnableFPS)
 				renderFPS(client);
 			if (DawnClient.getInstance().config.EnableCoords)
