@@ -13,17 +13,21 @@ Please see the [release section](https://github.com/AKR0SS/Fabric_dawn-hud/relea
 * Current Position Coordinates
 * Current FPS Value
 * Current World Time
+* Current Biome
   ### Advanced Features
   * Toggle between 12 and 24-hour world clock
 
 ## Plan to add Features
-* Current Biome
 * Equipped Armor
 * Equipped Weapon
   ### Advanced Features
   * Custom module Colors 
   * Custom module Positions
   * Custom FPS value threshold
+
+## Supported Game versions
+* 1.19.x
+* 1.18.x
 
 ## Dependencies
 * Fabric API
