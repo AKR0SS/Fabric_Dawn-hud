@@ -1,9 +1,9 @@
 package net.fabricmc.dawnhud.mixin;
 
 import net.fabricmc.dawnhud.DawnClient;
-import net.fabricmc.dawnhud.modules.Coordinates;
-import net.fabricmc.dawnhud.modules.Fps;
-import net.fabricmc.dawnhud.modules.Time;
+import net.fabricmc.dawnhud.modules.mCoordinates;
+import net.fabricmc.dawnhud.modules.mFps;
+import net.fabricmc.dawnhud.modules.mTime;
 import net.fabricmc.dawnhud.modules.mBiome;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -35,8 +35,8 @@ public class DisplayRenderMixin {
 	}
 
 	/* Module Renderers */
-	private void renderFPS(MinecraftClient client) { new Fps().renderFps(client, matrixStack); }
-	private void renderTime(MinecraftClient client) { new Time().renderTime(client, matrixStack); }
-	private void renderCoords(MinecraftClient client) { new Coordinates().renderCoordinates(client, matrixStack); }
+	private void renderFPS(MinecraftClient client) { new mFps().renderFps(client, matrixStack); }
+	private void renderTime(MinecraftClient client) { new mTime().renderTime(client, matrixStack); }
+	private void renderCoords(MinecraftClient client) { new mCoordinates().renderCoordinates(client, matrixStack); }
 	private void renderBiome(MinecraftClient client) { new mBiome().renderBiome(client, matrixStack); }
 }
