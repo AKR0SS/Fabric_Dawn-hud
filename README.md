@@ -18,6 +18,7 @@ Please see the [release section](https://github.com/AKR0SS/Fabric_dawn-hud/relea
   * Toggle between 12 and 24-hour world clock
 
 ## Plan to add Features
+* Toggle between in-game time and irl time
 * Equipped Armor
 * Equipped Weapon
   ### Advanced Features
