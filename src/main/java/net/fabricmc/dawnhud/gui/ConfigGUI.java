@@ -116,7 +116,7 @@ public class ConfigGUI extends LightweightGuiDescription  {
 
         editColors.setOnClick(() -> {
             MinecraftClient.getInstance().setScreen(null);
-            MinecraftClient.getInstance().setScreen(new CottonClientScreen(new ColorEditor()));
+            //MinecraftClient.getInstance().setScreen(new CottonClientScreen(new ColorEditor()));
         });
 
         /* Adding Modules to Panel Render */
