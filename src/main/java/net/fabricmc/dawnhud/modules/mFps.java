@@ -4,7 +4,7 @@ import net.fabricmc.dawnhud.mixin.FPSDisplayMixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class Fps {
+public class mFps {
     public void renderFps(MinecraftClient client, MatrixStack matrixStack) {
         int currentFPS = getFPS(client);
         String fpsDisplayString;

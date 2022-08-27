@@ -4,7 +4,7 @@ import net.fabricmc.dawnhud.DawnClient;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class Time {
+public class mTime {
     public void renderTime(MinecraftClient client, MatrixStack matrixStack) {
         long worldTime = (client.player.world.getTimeOfDay() + 6000);
 

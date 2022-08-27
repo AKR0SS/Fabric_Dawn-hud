@@ -3,7 +3,7 @@ package net.fabricmc.dawnhud.modules;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.math.MatrixStack;
 
-public class Coordinates {
+public class mCoordinates {
     public void renderCoordinates(MinecraftClient client, MatrixStack matrixStack) {
         int currentX = getX(client);
         int currentY = getY(client);
